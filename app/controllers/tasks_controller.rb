@@ -12,10 +12,11 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  # def create
-  #   @task = Task.new(params[:task])
-  #   @task.save
-  # end
+  def create
+    @task = Task.new(task_params) # j'appel la methode task_params
+    @task.save
+    redirect_to tasks_path(@tasks)
+  end
 
   def edit
     @task = Task.find(params[:id])
@@ -26,14 +27,16 @@ class TasksController < ApplicationController
     @task.update(params[:task])
   end
 
+
   def destroy
     @task= Task.find(params[:id])
     @task.destroy
+    redirect_to tasks_path(@tasks)
   end
 
 private
 
-def restaurant_params
+def task_params
     params.require(:task).permit(:name, :address, :delivery)
   end
 

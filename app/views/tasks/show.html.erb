@@ -1,3 +1,7 @@
 <h2><%= @task.name %></h2>
 <p><%= @task.delivery %></p>
 <p><%= @task.status %></p>
+
+<p>
+  <%= link_to "Supress", new_task_path(@task), method: :destroy, data: { confirm: "Are you sure?" }%>
+</p>
